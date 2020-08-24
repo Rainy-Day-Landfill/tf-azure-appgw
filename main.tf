@@ -121,8 +121,15 @@ resource "azurerm_application_gateway" "appgw" {
     # Possible values are Basic and PathBasedRouting.
     rule_type                  = "Basic"
 
+    # The Name of the HTTP Listener which should be used for this Routing Rule.
     http_listener_name         = local.listener_name
+
+    # The Name of the Backend Address Pool which should be used for this Routing Rule.
+    # Cannot be set if redirect_configuration_name is set.
     backend_address_pool_name  = local.backend_address_pool_name
+
+    # The Name of the Backend HTTP Settings Collection which should be used for this Routing Rule.
+    # Cannot be set if redirect_configuration_name is set.
     backend_http_settings_name = local.http_setting_name
   }
 }
